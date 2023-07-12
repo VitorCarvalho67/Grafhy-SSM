@@ -6,6 +6,7 @@ import Dashboard from '../views/Dashboard.vue';
 import Chat from '../views/Chat.vue';
 import Admin from '../views/Admin.vue';
 import Post from '../views/Post.vue';
+import Teste from '../views/Teste.vue';
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: '/post',
     name: 'Post',
     component: Post
+  },
+  {
+    path: '/teste',
+    name: 'Teste',
+    component: Teste
   }
 ];
 

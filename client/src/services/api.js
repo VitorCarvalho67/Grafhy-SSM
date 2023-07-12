@@ -87,6 +87,14 @@ export const getComunicado = async () => {
     }
 };
 
+export const Solicitation_Enter = async (users) => {
+    try {
+        const response = await api.post('/solicitation/', users);
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.detail);
+    }
+};
 
 // Adicione aqui outras funções para interagir com a API do backend, se necessário
 

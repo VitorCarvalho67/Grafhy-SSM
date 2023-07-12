@@ -70,6 +70,14 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     db.refresh(db_user)
     return db_user.to_dict()
 
+# get em um user com o email especifico
+@app.get("/users/email/{email_users}", response_model=UserOut)
+def read_user_email(email_users: str, db: Session = Depends(get_db)):
+    db_user = db.query(User).filter(User.email_users == email_users).first()
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user.to_dict()
+ 
 
 @app.get("/users/", response_model=List[UserOut])
 def read_users(db: Session = Depends(get_db)):
@@ -79,8 +87,7 @@ def read_users(db: Session = Depends(get_db)):
 
 @app.post("/login/", response_model=UserOut)
 def login(user_login: UserLogin, db: Session = Depends(get_db)):
-    db_user = db.query(User).filter(User.email_users ==
-                                    user_login.email_users).first()
+    db_user = db.query(User).filter(User.email_users == user_login.email_users).first()
     if db_user is None or db_user.password_users != user_login.password_users:
         raise HTTPException(status_code=400, detail="Invalid login details.")
     return db_user.to_dict()
