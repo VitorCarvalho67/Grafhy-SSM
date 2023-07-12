@@ -34,6 +34,7 @@ Banco de dados em mysql.
 - [python-multipart](https://pypi.org/project/python-multipart/)
 - [sqlalchemy](https://pypi.org/project/SQLAlchemy/)
 - [mysql-connector-python](https://pypi.org/project/mysql-connector-python/)
+- [garage](https://garagehq.deuxfleurs.fr/)
 
 ## Funcionalidades
 - [ ] Cadastro de usuário
@@ -238,3 +239,8 @@ create view view_solicitation as select solicitation.id_solicitation, solicitati
 
 - **Login**
 - `POST /login`: Autentica um usuário e retorna seus detalhes.
+
+- **Comunidados**
+- `POST /comunidados`: Cria um novo comunicado.
+- `GET /comunidados/{id}`: Retorna os detalhes de um único comunicado.
+- `GET /comunidados/`: Retorna todos os comunicados.
