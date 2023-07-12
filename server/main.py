@@ -4,7 +4,7 @@ from pydantic import BaseModel
 import os
 import io
 from sqlalchemy.orm import Session
-from models import get_db, User, Groups, MenssageGroup, Comunicado, Comunicado_teste
+from models import get_db, User, Groups, MenssageGroup, Comunicado_teste, Solicitation
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.exc import IntegrityError
 from typing import List, Dict
@@ -180,47 +180,6 @@ def read_menssages(menssages_id: int, db: Session = Depends(get_db)):
 
 # parte dos comunicados
 
-# quero que ele receba o arquivo e aqui no backend ele se divida em nome_arquivo e file_arquivo, além disso tem o data_message que é a data atual e o message que é o texto do comunicado
-
-
-class ComunicadoCreate(BaseModel):
-    message: str
-    file_arquivo: Optional[UploadFile] = None
-
-
-class ComunicadoOut(ComunicadoCreate):
-    id_comunicado: int
-    date_message: date
-    nome_arquivo: Optional[str] = None
-    file_arquivo: Optional[bytes] = None
-
-
-@app.post("/comunicados/", response_model=ComunicadoOut)
-async def create_comunicado(message: str = Form(...), file_arquivo: UploadFile = Form(None), db: Session = Depends(get_db)):
-    date_message = date.today()
-    if file_arquivo is not None:
-        file_name = file_arquivo.filename
-        file_content = await file_arquivo.read()
-    else:
-        file_name = None
-        file_content = None
-    db_comunicado = Comunicado(message=message, date_message=date_message,
-                               nome_arquivo=file_name, file_arquivo=file_content)
-    db.add(db_comunicado)
-    db.commit()
-    db.refresh(db_comunicado)
-    return db_comunicado.to_dict()
-
-# mostrar todas os comunicados imgs e a data
-
-
-class ComunicadoList(BaseModel):
-    id_comunicado: int
-    message: str
-    date_message: str
-    nome_arquivo: Optional[str] = None
-    file_arquivo: Optional[bytes] = None
-
 # Comunicado teste
 
 
@@ -319,32 +278,18 @@ async def get_comunicado(id_comunicado: int, db: Session = Depends(get_db)):
     return comunicado
 
 
+class Solicitation_Enter(BaseModel):
+    id_users1: int
+    id_users2: int
 
+class Solicitation_Out(Solicitation_Enter):
+    id_solicitation: int
 
-
-
-
-
-
-
-
-# @app.get("/comunicado/", response_model=List[comunicado_teste_out])
-# async def get_comunicados(db: Session = Depends(get_db)):
-#     db_comunicados = db.query(Comunicado_teste).all()
-#     comunicados = []
-
-#     for db_comunicado in db_comunicados:
-#         comunicado = db_comunicado.to_dict()
-#         try:
-#             file_content = client.get_object("grafhy", f"comunicados/{comunicado['hash_arquivo']}").read()
-
-#             print(file_content)
-#             comunicado['file_content'] = file_content
-#         except Exception as e:
-#             print(f"Erro ao obter arquivo: {e}")
-#             comunicado['file_content'] = None
-
-#         comunicados.append(comunicado)
-
-#     return comunicados
+@app.post("/solicitation/", response_model=Solicitation_Out)
+def create_solicitation(solicitation: Solicitation_Enter, db: Session = Depends(get_db)):
+    db_solicitation = Solicitation(**solicitation.dict())
+    db.add(db_solicitation)
+    db.commit()
+    db.refresh(db_solicitation)
+    return db_solicitation.to_dict()
 

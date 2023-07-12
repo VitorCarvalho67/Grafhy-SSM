@@ -244,3 +244,4 @@ create view view_solicitation as select solicitation.id_solicitation, solicitati
 - `POST /comunidados`: Cria um novo comunicado.
 - `GET /comunidados/{id}`: Retorna os detalhes de um único comunicado.
 - `GET /comunidados/`: Retorna todos os comunicados.
+

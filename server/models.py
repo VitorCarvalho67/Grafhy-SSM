@@ -64,26 +64,7 @@ class MenssageGroup(Base):
             "message": self.message,
             "date_message": self.date_message
         }
-
-
-class Comunicado(Base):
-    __tablename__ = "comunicados"
-
-    id_comunicados = Column(Integer, primary_key=True, index=True)
-    message = Column(String, index=True)
-    date_message = Column(String, index=True)
-    nome_arquivo = Column(String, index=True)
-    file_arquivo = Column(LargeBinary, index=True)
-
-    def to_dict(self):
-        return {
-            "id_comunicados": self.id_comunicados,
-            "message": self.message,
-            "date_message": self.date_message,
-            "nome_arquivo": self.nome_arquivo,
-            "file_arquivo": self.file_arquivo
-        }
-
+    
 
 class Comunicado_teste(Base):
     __tablename__ = "comunicados_teste"
@@ -97,6 +78,21 @@ class Comunicado_teste(Base):
 
     def to_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+
+class Solicitation(Base):
+    __tablename__ = "solicitation"
+
+    id_solicitation = Column(Integer, primary_key=True, index=True)
+    id_users1 = Column(Integer, index=True)
+    id_users2 = Column(Integer, index=True)
+
+    def to_dict(self):
+        return {
+            "id_solicitation": self.id_solicitation,
+            "id_users1": self.id_users1,
+            "id_users2": self.id_users2
+        }
 
 
 DATABASE_URL = "mysql+mysqlconnector://root:@localhost/grafhyPy?charset=utf8mb4"
