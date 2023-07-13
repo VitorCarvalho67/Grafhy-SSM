@@ -4,7 +4,7 @@ from pydantic import BaseModel
 import os
 import io
 from sqlalchemy.orm import Session
-from models import get_db, User, Groups, MenssageGroup, Comunicado_teste, Solicitation
+from models import get_db, User, Groups, MenssageGroup, Comunicado_teste, Solicitation, Contacts_users
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.exc import IntegrityError
 from typing import List, Dict
@@ -236,7 +236,7 @@ class comunicado_teste_out(comunicado_teste):
     type_arquivo: Optional[str] = None
     file_arquivo: Optional[bytes]= None
 
-# quero uma rota que retorne um json com todos os comunicados e o arquivo em bytes, tipo e nome do arquivo
+# uma rota que retorne um json com todos os comunicados e o arquivo em bytes, tipo e nome do arquivo
 @app.get("/comunicado/", response_model=List[comunicado_teste_out])
 async def get_comunicados(db: Session = Depends(get_db)):
     db_comunicados = db.query(Comunicado_teste).all()
@@ -300,3 +300,65 @@ def create_solicitation(solicitation: Solicitation_Enter, db: Session = Depends(
     db.refresh(db_solicitation)
     return db_solicitation.to_dict()
 
+# mostrar todas as solicitações de amizade de um usuário
+@app.get("/solicitation/{user_id}", response_model=List[Solicitation_Out])
+def read_solicitation(user_id: int, db: Session = Depends(get_db)):
+    db_solicitation = db.query(Solicitation).filter(Solicitation.id_users2 == user_id).all()
+    if db_solicitation is None:
+        raise HTTPException(status_code=404, detail="Solicitation not found")
+    return [solicitation.to_dict() for solicitation in db_solicitation]
+
+# aceitar uma solicitação de amizade
+
+class Contacts_users_Enter(BaseModel):
+    id_users1: int
+    id_users2: int
+    response: bool
+
+
+class Contacts_users_Out(Contacts_users_Enter):
+    id_contacts: int
+
+
+@app.post("/solicitation/accept", response_model=Contacts_users_Out)
+def accept_solicitation(solicitation: Contacts_users_Enter, db: Session = Depends(get_db)):
+    db_solicitation = db.query(Solicitation).filter(Solicitation.id_users1 == solicitation.id_users1).filter(Solicitation.id_users2 == solicitation.id_users2).first()
+    if db_solicitation is None:
+        raise HTTPException(status_code=404, detail="Solicitation not found")
+    if solicitation.response == True:
+        db_contacts_users = Contacts_users(id_users1=solicitation.id_users1, id_users2=solicitation.id_users2)
+        db.add(db_contacts_users)
+        db.delete(db_solicitation)
+        db.commit()
+        db.refresh(db_contacts_users)
+        response_dict = db_contacts_users.to_dict()
+    else:
+        db.delete(db_solicitation)
+        db.commit()
+        response_dict = db_solicitation.to_dict()
+
+    # Include 'response' in the output
+    response_dict["response"] = solicitation.response
+    return response_dict
+
+# mostrar todos os contatos de um usuário
+class Contacts_user(BaseModel):
+    id_users1: int
+    id_users2: int
+
+class Contacts_user_Out(Contacts_user):
+    id_contacts: int
+
+@app.get("/contacts/{user_id}", response_model=List[Contacts_user_Out])
+def read_contacts(user_id: int, db: Session = Depends(get_db)):
+    db_contacts = db.query(Contacts_users).filter(Contacts_users.id_users2 == user_id).all()
+    if db_contacts is None:
+        raise HTTPException(status_code=404, detail="Contacts not found")
+    return [contacts.to_dict() for contacts in db_contacts]
+    
+# a requisicao para essa rota é feita assim:
+# http://localhost:8000/solicitation/
+# o body é um json com o id_users1, id_users2 e response
+# "id_users1": 1,
+# "id_users2": 2,
+# "response": true
