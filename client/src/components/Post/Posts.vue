@@ -34,7 +34,7 @@
   methods: {
     async getComunicados() {
       try {
-        const response = await axios.get('http://localhost:8000/comunicado/');
+        const response = await axios.get('https://apigrafhy.favela.network/comunicado/');
         this.comunicados = response.data;
       } catch (error) {
         console.error('Erro ao obter comunicados:', error);

@@ -42,7 +42,7 @@ export default defineComponent({
         };
     },
     //     curl --request POST \
-    //   --url http://localhost:8000/comunicado/ \
+    //   --url https://apigrafhy.favela.network/comunicado/ \
     //   --header 'Content-Type: multipart/form-data' \
     //   --form message_comunicado=dwadwdadawd \
     //   --form title_comunicado=awdawdawdawd \
@@ -65,7 +65,7 @@ export default defineComponent({
             }
 
             try {
-                const response = await axios.post('http://localhost:8000/comunicado/', formData, {
+                const response = await axios.post('https://apigrafhy.favela.network/comunicado/', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

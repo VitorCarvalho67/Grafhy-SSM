@@ -23,7 +23,7 @@
   
       onMounted(async () => {
         try {
-          const response = await axios.get('http://localhost:8000/menssages/group/3');
+          const response = await axios.get('https://apigrafhy.favela.network/menssages/group/3');
           messages.value = response.data.reverse(); // Reverse the order of the messages
           nextTick(() => {
             containerRef.value.scrollTop = contentRef.value.offsetHeight;

@@ -31,7 +31,7 @@
             </div>
             <div class="box">
                 <div v-if="contacts && contacts.length" class="contacts">
-                    <h2>Contatos</h2>
+                    <h1>Contatos</h1>
                     <ul>
                         <li v-for="(contact, index) in contacts" :key="index">
                             <router-link :to="{ name: 'Private', params: { userId: contact.id_users1 } }">{{
@@ -94,7 +94,7 @@ export default {
         },
         async fetchUserIdByEmail(email) {
             try {
-                const response = await axios.get(`http://localhost:8000/users/email/${email}`);
+                const response = await axios.get(`https://apigrafhy.favela.network/users/email/${email}`);
                 return response.data.id_users;
             } catch (err) {
                 console.error('Erro ao buscar usuário', err);
@@ -106,10 +106,10 @@ export default {
         },
         async fetchSolicitations() {
             try {
-                const response = await axios.get(`http://localhost:8000/solicitation/${this.user}`);
+                const response = await axios.get(`https://apigrafhy.favela.network/solicitation/${this.user}`);
                 const solicitations = response.data;
                 for (let solicitation of solicitations) {
-                    const userResponse = await axios.get(`http://localhost:8000/users/id/${solicitation.id_users1}`);
+                    const userResponse = await axios.get(`https://apigrafhy.favela.network/users/id/${solicitation.id_users1}`);
                     solicitation.name_users = userResponse.data.name_users;
                 }
                 this.solicitations = solicitations;
@@ -122,23 +122,28 @@ export default {
             const otherUserId = await this.fetchUserIdByEmail(this.email);
             if (this.user && otherUserId) {
                 try {
-                    const response = await axios.post(`http://localhost:8000/solicitation/`, {
+                    const response = await axios.post(`https://apigrafhy.favela.network/solicitation/`, {
                         id_users1: this.user,
                         id_users2: otherUserId
                     });
                     console.log('Solicitação enviada com sucesso', response.data);
-                    this.fetchSolicitations();  // atualizar as solicitações após enviar uma nova
+                    alert('Solicitação enviada com sucesso!');  // Adicionar um alerta
+                    this.email = '';  // Limpar o campo de email
+                    this.fetchSolicitations();  // Atualizar as solicitações após enviar uma nova
                 } catch (err) {
                     console.error('Erro ao enviar solicitação', err);
+                    alert('Erro ao enviar solicitação. Tente novamente.');  // Adicionar um alerta para o caso de erro
                 }
             } else {
                 console.error('Um ou ambos os IDs de usuário não foram encontrados');
+                alert('Usuário não encontrado. Verifique o email digitado.');  // Adicionar um alerta para o caso de usuário não encontrado
             }
         },
+        
         async respondToSolicitation(user1, resposta) {
             console.log(user1, this.user, resposta)
             try {
-                const solicitationResponse = await axios.post(`http://localhost:8000/solicitation/accept`, {
+                const solicitationResponse = await axios.post(`https://apigrafhy.favela.network/solicitation/accept`, {
                     id_users1: user1,
                     id_users2: this.user,
                     response: resposta
@@ -151,10 +156,10 @@ export default {
         },
         async fetchContacts() {
             try {
-                const response = await axios.get(`http://localhost:8000/contacts/${this.user}`);
+                const response = await axios.get(`https://apigrafhy.favela.network/contacts/${this.user}`);
                 const contacts = response.data;
                 for (let contact of contacts) {
-                    const userResponse = await axios.get(`http://localhost:8000/users/id/${contact.id_users1}`);
+                    const userResponse = await axios.get(`https://apigrafhy.favela.network/users/id/${contact.id_users1}`);
                     contact.name_users = userResponse.data.name_users;
                 }
                 this.contacts = contacts;
@@ -262,8 +267,8 @@ main {
     height: 100%;
 }
 
-.contacts h2 {
-    color: rgb(68, 182, 102);
+.contacts h1 {
+    color: rgb(255, 255, 255);
     padding: 1.2rem;
     letter-spacing: 0.5rem;
     width: 100%;

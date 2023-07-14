@@ -203,9 +203,6 @@ class comunicado_teste(BaseModel):
     date_message: str
     hash_arquivo: str
 
-# > Arquivo, Titile , Message, Data
-# < Id
-
 
 @app.post("/comunicado/", response_model=comunicado_teste)
 async def criar_comunicado(message_comunicado: str = Form(...), title_comunicado: str = Form(...), file_arquivo: UploadFile = Form(None), db: Session = Depends(get_db)):
@@ -273,7 +270,7 @@ async def get_comunicados(db: Session = Depends(get_db)):
 
 
 # a requisicao para o arquivo é feita assim:
-# http://localhost:8000/comunicado/1
+# https://apigrafhy.favela.network/comunicado/1
 # o 1 é o id do comunicado
 # o retorno é um json com o arquivo em bytes, tipo e nome do arquivo
 @app.get("/comunicado/{id_comunicado}", response_model=comunicado_teste_out)
@@ -366,7 +363,7 @@ def read_contacts(user_id: int, db: Session = Depends(get_db)):
     return [contacts.to_dict() for contacts in db_contacts]
     
 # a requisicao para essa rota é feita assim:
-# http://localhost:8000/solicitation/
+# https://apigrafhy.favela.network/solicitation/
 # o body é um json com o id_users1, id_users2 e response
 # "id_users1": 1,
 # "id_users2": 2,
