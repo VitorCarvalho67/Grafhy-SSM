@@ -104,6 +104,12 @@ export default defineComponent({
                 console.error('Erro ao buscar mensagens', err);
             }
         },
+        
+        setInterval() {
+            setInterval(() => {
+                this.fetchMessages();
+            }, 2000);
+        },
 
 
         async fetchLoggedInUserId() {
@@ -139,7 +145,7 @@ export default defineComponent({
         this.contactId = this.$route.params.userId;
         this.checkUser();
         await this.fetchLoggedInUserId();
-        this.fetchMessages();
+        this.setInterval();
     }
 });
 </script>
