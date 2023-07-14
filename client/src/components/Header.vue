@@ -57,7 +57,7 @@ nav a {
     margin: 5px;
     border-radius: 5px;
     transition: all 0.3s ease;
-    border: 1px solid white;
+    border: 1px solid rgb(68, 75, 77);
     color: white;
     display: flex;
     align-items: center;

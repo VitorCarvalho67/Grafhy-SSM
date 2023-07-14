@@ -31,7 +31,7 @@
         margin: 2rem;
         padding: 2rem;
         height: 85vh;
-        border: 1px solid #ccc;
+        border: 1px solid rgb(68, 75, 77);
         border-radius: 5px;
     }
 
@@ -50,13 +50,13 @@
         padding: 0.5rem;
         width: 20rem;
         border-radius: 5px;
-        border: 1px solid #ccc;
+        border: 1px solid rgb(68, 75, 77);
     }
     button {
         margin: 0.5rem;
         padding: 0.5rem;
         border-radius: 5px;
-        border: 1px solid #ccc;
+        border: 1px solid rgb(68, 75, 77);
         background-color: #ccc;
         color: #fff;
         cursor: pointer;

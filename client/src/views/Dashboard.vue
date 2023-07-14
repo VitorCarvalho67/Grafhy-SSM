@@ -8,23 +8,21 @@
                 <h2>{{ userEmail }}</h2>
 
                 <!-- Exibir solicitações -->
-                <div v-if="solicitations && solicitations.length">
-                    <h3>Solicitações:</h3>
-                    <ul>
-                        <li v-for="(solicitation, index) in solicitations" :key="index">
-                            Solicitação ID: {{ solicitation.id_solicitation }} de ID de usuário: {{ solicitation.id_users1
-                            }}
-                            <button @click="respondToSolicitation(solicitation.id_users1, true)">Aceitar</button>
-                            <button @click="respondToSolicitation(solicitation.id_users1, false)">Recusar</button>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="solicitations">
+                    <li v-for="(solicitation, index) in solicitations" :key="index">
+                        Solicitação de: {{ solicitation.name_users }}
+                        <button class="accept" @click="respondToSolicitation(solicitation.id_users1, true)">Aceitar</button>
+                        <button class="reject"
+                            @click="respondToSolicitation(solicitation.id_users1, false)">Recusar</button>
+                    </li>
+                </ul>
 
-                <form>
-                    <p>Solicitation Email do user:</p>
+                <form class="solicitation">
+                    <p>Email do usuário para solicitar:</p>
                     <input type="email" v-model="email">
-                    <button type="button" @click="sendSolicitation">Solicitation</button>
+                    <button type="button" @click="sendSolicitation">Solicitar</button>
                 </form>
+
 
                 <div class="box-router">
                     <p>Area de postagens de novos comunicados.</p>
@@ -32,7 +30,15 @@
                 </div>
             </div>
             <div class="box">
-                <img :src="img" alt="img1">
+                <div v-if="contacts && contacts.length" class="contacts">
+                    <h2>Contatos</h2>
+                    <ul>
+                        <li v-for="(contact, index) in contacts" :key="index">
+                            <router-link :to="{ name: 'Private', params: { userId: contact.id_users1 } }">{{
+                                contact.name_users }}</router-link>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </main>
 
@@ -64,7 +70,8 @@ export default {
             email: null,  // email do usuário para o qual enviar a solicitação
             user: null,  // ID do usuário logado
             img: Img1,
-            solicitations: null,  // solicitações para o usuário logado
+            solicitations: null, // solicitações para o usuário logado
+            contacts: null,
         };
     },
     methods: {
@@ -100,11 +107,17 @@ export default {
         async fetchSolicitations() {
             try {
                 const response = await axios.get(`http://localhost:8000/solicitation/${this.user}`);
-                this.solicitations = response.data;
+                const solicitations = response.data;
+                for (let solicitation of solicitations) {
+                    const userResponse = await axios.get(`http://localhost:8000/users/id/${solicitation.id_users1}`);
+                    solicitation.name_users = userResponse.data.name_users;
+                }
+                this.solicitations = solicitations;
             } catch (err) {
                 console.error('Erro ao buscar solicitações', err);
             }
         },
+
         async sendSolicitation() {
             const otherUserId = await this.fetchUserIdByEmail(this.email);
             if (this.user && otherUserId) {
@@ -135,7 +148,20 @@ export default {
             } catch (err) {
                 console.error('Erro ao responder à solicitação', err);
             }
-        }
+        },
+        async fetchContacts() {
+            try {
+                const response = await axios.get(`http://localhost:8000/contacts/${this.user}`);
+                const contacts = response.data;
+                for (let contact of contacts) {
+                    const userResponse = await axios.get(`http://localhost:8000/users/id/${contact.id_users1}`);
+                    contact.name_users = userResponse.data.name_users;
+                }
+                this.contacts = contacts;
+            } catch (err) {
+                console.error('Erro ao buscar contatos', err);
+            }
+        },
     },
     async created() {
         this.userEmail = JSON.parse(localStorage.getItem('user'));
@@ -143,6 +169,7 @@ export default {
         this.checkUser();
         await this.fetchLoggedInUserId();
         await this.fetchSolicitations();
+        await this.fetchContacts();
     },
 };
 </script>
@@ -175,7 +202,7 @@ main {
     align-items: center;
     width: 40%;
     height: 80%;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
     border-radius: 5px;
     background-color: rgb(30, 32, 33);
     color: rgb(197, 197, 197);
@@ -201,7 +228,7 @@ main {
     margin: 5px;
     border-radius: 5px;
     transition: all 0.3s ease;
-    border: 1px solid white;
+    border: 1px solid rgb(68, 75, 77);
     color: white;
     display: flex;
     align-items: center;
@@ -217,5 +244,127 @@ main {
 .box p {
     padding: 0.5rem;
     font-size: 11px;
+}
+
+.box:nth-child(2) {
+    background-image: url('../assets/imgs/img2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+
+.contacts h2 {
+    color: rgb(68, 182, 102);
+    padding: 1.2rem;
+    letter-spacing: 0.5rem;
+    width: 100%;
+    backdrop-filter: blur(5px);
+    background-color: #00000068;
+    text-align: center;
+}
+
+.contacts ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 80%;
+}
+
+.contacts ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    width: 95%;
+    backdrop-filter: blur(5px);
+    padding: 1rem;
+    border: rgb(68, 75, 77) 1px solid;
+    border-radius: 5px;
+    background-color: #00000068;
+}
+
+.contacts ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Estilos para a lista de solicitações */
+ul.solicitations {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Estilos para cada item da lista de solicitações */
+ul.solicitations li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilos para os botões "Aceitar" e "Recusar" */
+ul.solicitations button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Estilos específicos para o botão "Aceitar" */
+ul.solicitations button.accept {
+    background-color: #4caf4fcc;
+    color: white;
+}
+
+/* Estilos específicos para o botão "Recusar" */
+ul.solicitations button.reject {
+    background-color: #f44336da;
+    color: white;
+}
+
+form.solicitation {
+    margin-top: 20px;
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Estilos para o campo de entrada de email */
+form.solicitation input[type="email"] {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Estilos para o botão de envio */
+form.solicitation button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+}
+
+/* Estilos para o botão de envio ao passar o mouse */
+form.solicitation button:hover {
+    background-color: #45a049;
 }
 </style>

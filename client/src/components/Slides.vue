@@ -158,7 +158,7 @@ export default defineComponent({
     .buttons button {
         padding: 0.5rem;
         border-radius: 5px;
-        border: 1px solid #ccc;
+        border: 1px solid rgb(68, 75, 77);
         background-color: transparent;
         color: #fff;
         cursor: pointer;

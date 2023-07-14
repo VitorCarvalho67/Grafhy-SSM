@@ -85,7 +85,7 @@ li {
     align-items: center;
     margin: 2rem;
     padding: 2rem;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
     border-radius: 5px;
     height: 90%;
     width: 45%;

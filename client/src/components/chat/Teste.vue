@@ -92,7 +92,7 @@
     overflow-y: auto;
     margin: 2rem;
     padding: 2rem;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
     border-radius: 5px;
   }
   
@@ -104,7 +104,7 @@
     height: auto;
     margin: 1rem;
     padding: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
     border-radius: 5px;
   }
   
@@ -116,7 +116,7 @@
     margin: 2rem;
     padding: 2rem;
     height: 20vh;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
     border-radius: 5px;
   }
   
@@ -125,7 +125,7 @@
     padding: 0.5rem;
     width: 20rem;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
   }
   
   .input-box button {
@@ -133,7 +133,7 @@
     padding: 0.5rem;
     width: 5rem;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
   }
   </style>
   

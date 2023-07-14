@@ -32,7 +32,7 @@ export default defineComponent({
     overflow-y: auto;
     margin: 2rem;
     padding: 2rem;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
     border-radius: 5px;
     display: flex;
     flex-direction: row;
@@ -46,7 +46,7 @@ export default defineComponent({
     overflow-y: auto;
     margin: 2rem;
     padding: 2rem;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
     border-radius: 5px;
     display: flex;
     flex-direction: column;

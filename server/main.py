@@ -4,7 +4,7 @@ from pydantic import BaseModel
 import os
 import io
 from sqlalchemy.orm import Session
-from models import get_db, User, Groups, MenssageGroup, Comunicado_teste, Solicitation, Contacts_users
+from models import get_db, User, Groups, MenssageGroup, Comunicado_teste, Solicitation, Contacts_users, Mensagens_users
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.exc import IntegrityError
 from typing import List, Dict
@@ -78,6 +78,13 @@ def read_user_email(email_users: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return db_user.to_dict()
  
+# get em um user com o id especifico
+@app.get("/users/id/{user_id}", response_model=UserOut)
+def read_user_id(user_id: int, db: Session = Depends(get_db)):
+    db_user = db.query(User).filter(User.id_users == user_id).first()
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user.to_dict()
 
 @app.get("/users/", response_model=List[UserOut])
 def read_users(db: Session = Depends(get_db)):
@@ -327,6 +334,8 @@ def accept_solicitation(solicitation: Contacts_users_Enter, db: Session = Depend
         raise HTTPException(status_code=404, detail="Solicitation not found")
     if solicitation.response == True:
         db_contacts_users = Contacts_users(id_users1=solicitation.id_users1, id_users2=solicitation.id_users2)
+        db_contacts_users_reverse = Contacts_users(id_users1=solicitation.id_users2, id_users2=solicitation.id_users1)
+        db.add(db_contacts_users_reverse)
         db.add(db_contacts_users)
         db.delete(db_solicitation)
         db.commit()
@@ -362,3 +371,44 @@ def read_contacts(user_id: int, db: Session = Depends(get_db)):
 # "id_users1": 1,
 # "id_users2": 2,
 # "response": true
+
+
+# envio de mensagens entre usuários
+
+class Mensagens_users_Enter(BaseModel):
+    id_users1: int
+    id_users2: int
+    message: str
+    date_message: str
+
+class Mensagens_users_Out(Mensagens_users_Enter):
+    id_messages_users: int
+
+@app.post("/message_user/", response_model=Mensagens_users_Out)
+def create_message_user(mensagens_users: Mensagens_users_Enter, db: Session = Depends(get_db)):
+    db_mensagens_users = Mensagens_users(**mensagens_users.dict())
+    db.add(db_mensagens_users)
+    db.commit()
+    db.refresh(db_mensagens_users)
+    return db_mensagens_users.to_dict()
+
+
+# mostrar todas as mensagens e a data de um usuário enviado para outro usuário ou recebida de outro usuário
+
+class Show_mensagens_users(Mensagens_users_Enter):
+    id_users1: int
+    id_users2: int
+
+@app.get("/message_user/{user_id1}/{user_id2}", response_model=List[Show_mensagens_users])
+def read_mensagens_users(user_id1: int, user_id2: int, db: Session = Depends(get_db)):
+    db_mensagens_users = db.query(Mensagens_users).filter(Mensagens_users.id_users1 == user_id1).filter(Mensagens_users.id_users2 == user_id2).all()
+    db_mensagens_users2 = db.query(Mensagens_users).filter(Mensagens_users.id_users1 == user_id2).filter(Mensagens_users.id_users2 == user_id1).all()
+
+    if db_mensagens_users is None:
+        raise HTTPException(status_code=404, detail="Menssages not found")
+    if db_mensagens_users2 is None:
+        raise HTTPException(status_code=404, detail="Menssages not found")
+    return [mensagens_users.to_dict() for mensagens_users in db_mensagens_users] + [mensagens_users.to_dict() for mensagens_users in db_mensagens_users2]
+
+
+

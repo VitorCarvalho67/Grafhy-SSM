@@ -8,7 +8,18 @@ from sqlalchemy import LargeBinary
 
 Base = declarative_base()
 
+DATABASE_URL = "mysql+mysqlconnector://root:@localhost/grafhyPy?charset=utf8mb4"
 
+engine = create_engine(DATABASE_URL)
+Base.metadata.create_all(bind=engine)
+
+
+def get_db():
+    db = Session(bind=engine)
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 class User(Base):
@@ -109,24 +120,21 @@ class Contacts_users(Base):
             "id_users2": self.id_users2
         }
     
-DATABASE_URL = "mysql+mysqlconnector://root:@localhost/grafhyPy?charset=utf8mb4"
+class Mensagens_users(Base):
+    __tablename__ = "messages_users"
+    
+    id_messages_users = Column(Integer, primary_key=True, index=True)
+    id_users1 = Column(Integer, index=True)
+    id_users2 = Column(Integer, index=True)
+    message = Column(String, index=True)
+    date_message = Column(String, index=True)
 
-engine = create_engine(DATABASE_URL)
-Base.metadata.create_all(bind=engine)
-
-
-def get_db():
-    db = Session(bind=engine)
-    try:
-        yield db
-    finally:
-        db.close()
-
-
-# create table comunicados_teste (
-#   id_comunicados int not null auto_increment primary key,
-#   title_comunicado varchar(255) not null,
-#   message_comunicado varchar(255) not null,
-#   date_message varchar(255) not null
-#   hash_arquivo varchar(255) not null
-# );
+    def to_dict(self):
+        return{
+            "id_messages_users": self.id_messages_users,
+            "id_users1": self.id_users1,
+            "id_users2": self.id_users2,
+            "message": self.message,
+            "date_message": self.date_message
+        }
+    

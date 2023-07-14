@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
+    border-color: rgb(68, 75, 77);
 }
 
 body{
@@ -12,4 +13,16 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+/* imput do tipo text e email */
+input[type="text"], input[type="email"], input[type="password"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(68, 75, 77);
+    border-radius: 5px;
+    background-color: rgb(24, 26, 27);
+    color: #ffffff;
+    font-size: 16px;
+    margin-bottom: 10px;
 }

@@ -71,7 +71,7 @@ export default {
     margin: 2rem;
     padding: 2rem;
     height: 20vh;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
     border-radius: 5px;
 }
 
@@ -80,7 +80,7 @@ export default {
     padding: 0.5rem;
     width: 20rem;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
 }
 
 .input-box button {
@@ -88,7 +88,7 @@ export default {
     padding: 0.5rem;
     width: 5rem;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
 }
 </style> 
 

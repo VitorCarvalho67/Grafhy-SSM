@@ -57,7 +57,7 @@
     overflow-y: auto;
     margin: 2rem;
     padding: 2rem;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
     border-radius: 5px;
   }
   
@@ -74,7 +74,7 @@
     min-height: 400px;
     margin: 1rem;
     padding: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
     border-radius: 5px;
   }
 

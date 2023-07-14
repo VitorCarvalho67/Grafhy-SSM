@@ -117,7 +117,7 @@ main {
     align-items: center;
     width: 40%;
     height: 80%;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
     border-radius: 5px;
     background-color: rgb(30, 32, 33);
     color: rgb(197, 197, 197);
@@ -151,7 +151,7 @@ main {
     margin: 5px;
     border-radius: 5px;
     transition: all 0.3s ease;
-    border: 1px solid white;
+    border: 1px solid rgb(68, 75, 77);
     color: white;
     display: flex;
     align-items: center;
@@ -183,7 +183,7 @@ main {
     padding: 0.5rem;
     width: 25rem;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
 }
 
 .input-box label {
@@ -196,7 +196,7 @@ main {
     padding: 0.5rem;
     width: 5rem;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(68, 75, 77);
 }
 </style> 
 

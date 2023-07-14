@@ -7,6 +7,7 @@ import Chat from '../views/Chat.vue';
 import Admin from '../views/Admin.vue';
 import Post from '../views/Post.vue';
 import Teste from '../views/Teste.vue';
+import Private from '../views/Private.vue';
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/teste',
     name: 'Teste',
     component: Teste
+  },
+  {
+    path: '/private/:userId',
+    name: 'Private',
+    component: Private
   }
 ];
 
