@@ -36,7 +36,7 @@ Banco de dados em mysql.
 - [mysql-connector-python](https://pypi.org/project/mysql-connector-python/)
 - [garage](https://garagehq.deuxfleurs.fr/)
 
-https://app.fossa.com/projects/custom%2B25850%2Fgithub.com%2Fk3s-io%2Fk3s?ref=badge_shield https://github.com/k3s-io/k3s/actions/workflows/nightly-install.yaml/badge.svg https://drone-publish.k3s.io/k3s-io/k3s https://github.com/k3s-io/k3s/actions/workflows/integration.yaml https://github.com/k3s-io/k3s/actions/workflows/unitcoverage.yaml
+https://app.fossa.com/projects/custom%2B25850%2Fgithub.com%2Fk3s-io%2Fk3s?ref=badge_shield
 ## Funcionalidades
 - [ ] Cadastro de usuário
 - [ ] Login de usuário
