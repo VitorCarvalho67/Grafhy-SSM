@@ -15,6 +15,12 @@ Senhas criptografadas.
 Sistema de recuperação de senha.
 Banco de dados em mysql.
 
+[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B25850%2Fgithub.com%2Fk3s-io%2Fk3s.svg?type=shield)](https://app.fossa.com/projects/custom%2B25850%2Fgithub.com%2Fk3s-io%2Fk3s?ref=badge_shield)
+![Nightly CI](https://github.com/k3s-io/k3s/actions/workflows/nightly-install.yaml/badge.svg)
+[![Build Status](https://drone-publish.k3s.io/api/badges/k3s-io/k3s/status.svg)](https://drone-publish.k3s.io/k3s-io/k3s)
+[![Integration Test Coverage](https://github.com/k3s-io/k3s/actions/workflows/integration.yaml/badge.svg)](https://github.com/k3s-io/k3s/actions/workflows/integration.yaml)
+[![Unit Test Coverage](https://github.com/k3s-io/k3s/actions/workflows/unitcoverage.yaml/badge.svg)](https://github.com/k3s-io/k3s/actions/workflows/unitcoverage.yaml)
+
 ## Technologies
 
 - [Vue.js](https://vuejs.org/)
@@ -36,7 +42,7 @@ Banco de dados em mysql.
 - [mysql-connector-python](https://pypi.org/project/mysql-connector-python/)
 - [garage](https://garagehq.deuxfleurs.fr/)
 
-https://app.fossa.com/projects/custom%2B25850%2Fgithub.com%2Fk3s-io%2Fk3s?ref=badge_shield
+
 ## Funcionalidades
 - [ ] Cadastro de usuário
 - [ ] Login de usuário
