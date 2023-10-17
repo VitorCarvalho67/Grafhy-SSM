@@ -1,7 +1,7 @@
 # GRAFHY (Rede social)
 
 ## Descrição
-Ambinete virtual para comunicação de usuarios através de mensagens, posts e imagens.
+Ambiente virtual para comunicação de usuarios através de mensagens, posts e imagens.
 Além disso o usuário pode criar grupos de conversa e adicionar outros usuários.
 Possui um sistema de login e cadastro de usuários.
 Ambiente de postagem de imagens e mensagens.
