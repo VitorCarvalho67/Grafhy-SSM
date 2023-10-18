@@ -1,4 +1,4 @@
-# GRAFHY (Rede social)
+# GRAFHY (social media)
 GRAFHY is a virtual communication platform that enables users to exchange messages, posts, and images. Furthermore, it offers features such as creating conversation groups, user login and registration, real-time encrypted messaging, message and post notifications, user profiles with photos, and encrypted passwords. Its MySQL database ensures efficient management of user interactions, making it a comprehensive and secure platform for online communication.
 
 <p align="center">
