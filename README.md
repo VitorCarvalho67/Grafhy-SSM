@@ -53,5 +53,5 @@ npm run dev
 
 ## Technology
 ![vue](https://github.com/VitorCarvalho67/GrafhyPy/assets/102667323/6ae806d6-2f99-4e87-8e88-a82fa9514e91)
-![fastapi-900x0-4025070843](https://github.com/VitorCarvalho67/GrafhyPy/assets/102667323/4ecf565d-21ad-4daa-8c0c-bf3ac64e5cfb)
+![fastapi-225x0-4025070843](https://github.com/VitorCarvalho67/GrafhyPy/assets/102667323/4ecf565d-21ad-4daa-8c0c-bf3ac64e5cfb)
 
