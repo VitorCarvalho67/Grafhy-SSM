@@ -94,7 +94,7 @@ export default {
         },
         async fetchUserIdByEmail(email) {
             try {
-                const response = await axios.get(`https://apigrafhy.favela.network/users/email/${email}`);
+                const response = await axios.get(`http://localhost:8000/users/email/${email}`);
                 return response.data.id_users;
             } catch (err) {
                 console.error('Erro ao buscar usuário', err);
@@ -106,10 +106,10 @@ export default {
         },
         async fetchSolicitations() {
             try {
-                const response = await axios.get(`https://apigrafhy.favela.network/solicitation/${this.user}`);
+                const response = await axios.get(`http://localhost:8000/solicitation/${this.user}`);
                 const solicitations = response.data;
                 for (let solicitation of solicitations) {
-                    const userResponse = await axios.get(`https://apigrafhy.favela.network/users/id/${solicitation.id_users1}`);
+                    const userResponse = await axios.get(`http://localhost:8000/users/id/${solicitation.id_users1}`);
                     solicitation.name_users = userResponse.data.name_users;
                 }
                 this.solicitations = solicitations;
@@ -122,7 +122,7 @@ export default {
             const otherUserId = await this.fetchUserIdByEmail(this.email);
             if (this.user && otherUserId) {
                 try {
-                    const response = await axios.post(`https://apigrafhy.favela.network/solicitation/`, {
+                    const response = await axios.post(`http://localhost:8000/solicitation/`, {
                         id_users1: this.user,
                         id_users2: otherUserId
                     });
@@ -143,7 +143,7 @@ export default {
         async respondToSolicitation(user1, resposta) {
             console.log(user1, this.user, resposta)
             try {
-                const solicitationResponse = await axios.post(`https://apigrafhy.favela.network/solicitation/accept`, {
+                const solicitationResponse = await axios.post(`http://localhost:8000/solicitation/accept`, {
                     id_users1: user1,
                     id_users2: this.user,
                     response: resposta
@@ -156,10 +156,10 @@ export default {
         },
         async fetchContacts() {
             try {
-                const response = await axios.get(`https://apigrafhy.favela.network/contacts/${this.user}`);
+                const response = await axios.get(`http://localhost:8000/contacts/${this.user}`);
                 const contacts = response.data;
                 for (let contact of contacts) {
-                    const userResponse = await axios.get(`https://apigrafhy.favela.network/users/id/${contact.id_users1}`);
+                    const userResponse = await axios.get(`http://localhost:8000/users/id/${contact.id_users1}`);
                     contact.name_users = userResponse.data.name_users;
                 }
                 this.contacts = contacts;

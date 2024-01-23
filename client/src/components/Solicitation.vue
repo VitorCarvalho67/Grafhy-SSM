@@ -28,7 +28,7 @@
   
       async function createSolicitation() {
         try {
-          const response = await axios.post(`https://apigrafhy.favela.network/solicitation/`, {
+          const response = await axios.post(`http://localhost:8000/solicitation/`, {
             id_users1: id_users1.value,
             id_users2: id_users2.value
           })

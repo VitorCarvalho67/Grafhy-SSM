@@ -64,7 +64,7 @@ export default defineComponent({
 
         async sendMessage() {
             try {
-                const response = await axios.post(`https://apigrafhy.favela.network/message_user/`, {
+                const response = await axios.post(`http://localhost:8000/message_user/`, {
                     id_users1: this.userId,
                     id_users2: this.contactId,
                     message: this.newMessage,
@@ -93,7 +93,7 @@ export default defineComponent({
 
         async fetchMessages() {
             try {
-                const response = await axios.get(`https://apigrafhy.favela.network/message_user/${this.userId}/${this.contactId}`);
+                const response = await axios.get(`http://localhost:8000/message_user/${this.userId}/${this.contactId}`);
                 let uniqueMessages = Array.from(new Set(response.data.map(JSON.stringify))).map(JSON.parse);
 
                 // Classificar mensagens por data de envio
@@ -114,7 +114,7 @@ export default defineComponent({
 
         async fetchLoggedInUserId() {
             try {
-                const response = await axios.get(`https://apigrafhy.favela.network/users/email/${this.userEmail}`);
+                const response = await axios.get(`http://localhost:8000/users/email/${this.userEmail}`);
                 this.userId = response.data.id_users;
                 return this.userId;
             } catch (err) {

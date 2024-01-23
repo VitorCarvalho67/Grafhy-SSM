@@ -33,7 +33,7 @@
     methods: {
       login(event) {
         event.preventDefault()
-        axios.post('https://apigrafhy.favela.network/login/', {
+        axios.post('http://localhost:8000/login/', {
           email_users: this.email,
           password_users: this.password
         })

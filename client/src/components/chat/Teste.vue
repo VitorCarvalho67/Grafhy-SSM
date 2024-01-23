@@ -51,7 +51,7 @@
   
       async function fetchMessages() {
         try {
-          const response = await axios.get('https://apigrafhy.favela.network/menssages/group/2');
+          const response = await axios.get('http://localhost:8000/menssages/group/2');
           messages.value = response.data.reverse(); // Reverse the order of the messages
         } catch (error) {
           console.error(error);
@@ -68,7 +68,7 @@
           };
           console.log("Request body:", requestBody);
   
-          const response = await axios.post('https://apigrafhy.favela.network/menssages/', requestBody);
+          const response = await axios.post('http://localhost:8000/menssages/', requestBody);
           console.log("Response:", response);
           messageInput.value = '';  // Clear the message input field.
           await fetchMessages(); // Fetch the updated messages

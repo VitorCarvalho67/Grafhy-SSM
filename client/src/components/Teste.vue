@@ -27,7 +27,7 @@
   
       async function getUser() {
         try {
-          const response = await axios.get(`https://apigrafhy.favela.network/users/email/${email.value}`)
+          const response = await axios.get(`http://localhost:8000/users/email/${email.value}`)
           user.value = response.data
         } catch (err) {
           error.value = "Usuário não encontrado"
