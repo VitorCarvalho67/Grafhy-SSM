@@ -4,11 +4,13 @@ from sqlalchemy.orm import Session
 from mysql.connector import connect
 from sqlalchemy import Column, Integer, String
 from sqlalchemy import LargeBinary
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 Base = declarative_base()
 
-DATABASE_URL = "mysql+mysqlconnector://root:@localhost/grafhyPy?charset=utf8mb4"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
 Base.metadata.create_all(bind=engine)

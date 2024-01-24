@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  server:
+    build: ./server
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+    networks:
+      - GrafhyPy
+    
+  client:
+    build: ./client
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+    networks:
+      - GrafhyPy
+
+  database:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: grafhyPy
+    volumes:
+      - ./server/banco.sql:/docker-entrypoint-initdb.d/banco.sql
+    networks:
+      - GrafhyPy
+
+networks:
+  GrafhyPy:

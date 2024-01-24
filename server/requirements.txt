@@ -30,7 +30,6 @@ six
 sniffio
 SQLAlchemy
 starlette
-typing_extension
 urllib3
 uvicorn
 watchfiles
