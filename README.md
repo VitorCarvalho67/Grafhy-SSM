@@ -17,7 +17,6 @@ GRAFHY is a virtual communication platform that enables users to exchange messag
 - Tauri
 
 ## How To Use
-
 ```bash
 git clone https://github.com/VitorCarvalho67/GrafhyPy.git
 ```
