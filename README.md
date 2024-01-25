@@ -12,6 +12,7 @@ GRAFHY is a virtual communication platform that enables users to exchange messag
 - Python
 - FastAPI
 - MySQL
+- Minio
 - JavaScript
 - Vue
 - Tauri
@@ -62,8 +63,14 @@ npm run dev
 
 ## Screenshots
 <p align="center">
-  <img src="https://github.com/Daniel-Alvarenga/Grafhy_Py/assets/128755697/0b79591f-2d8d-4e0d-865a-4ff90a3fcd36"/>
+  <img src="https://github.com/VitorCarvalho67/Barium/assets/102667323/79d3aebc-ebba-43e0-9bec-19c4ccffd721"/>
 </p>
+
+## Running with docker
+```bash
+sudo docker-compose build
+sudo docker-compose up
+```
 
 ## Contributing
 Contributions to this project are welcome. Please follow these steps to contribute:

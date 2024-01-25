@@ -59,7 +59,7 @@ h1, h2, h3 {
 }
 
 h1 {
-    color: rgb(68, 182, 102);
+    color: rgb(68, 89, 182);
     padding: 2rem;
     text-align: center;
 }
@@ -96,7 +96,7 @@ h2 {
     font-size: 2rem;
     margin: 0.5rem;
     padding: 0.5rem;
-    color: rgb(68, 182, 102);
+    color: rgb(68, 89, 182);
 }
 img {
     height: 99%;

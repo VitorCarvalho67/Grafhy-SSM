@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="logo">
-            <img src="../assets/vue.svg" alt="Logo" />
+            <img src="https://github.com/VitorCarvalho67/Grafhy-Vue-FastAPI/assets/102667323/a10aa288-747e-4b3f-9ca5-1d7da1fba175" alt="Logo" />
         </div>
         <nav>
             <router-link to="/">Home</router-link>
@@ -41,9 +41,8 @@ header {
 }
 
 .logo img {
-    width: 50px;
+    height: 50px;
     /* quero add o efeito de luz padrão do vue e vite com tauri */
-    
 }
 
 nav {

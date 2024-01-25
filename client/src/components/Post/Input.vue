@@ -99,7 +99,7 @@ h1,h2, h3 {
 }
 
 h1{
-    color: rgb(68, 182, 102);
+    color: rgb(68, 89, 182);
 }
 
 main {
