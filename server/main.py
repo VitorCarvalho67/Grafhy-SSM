@@ -28,10 +28,9 @@ app.add_middleware(
 )
 
 client = minio.Minio(
-    "grafhy.fnxln.com:3900",
-    "GKb3dc0701c58845978fd54e2f",
-    "6e21bd8e08e5ee70c0240b4fff93872fb855f1a24b4fa1d5a0ed58cccc572563",
-    # Force the region, this is specific to garage
+    "minio:9000",
+    "your_username",
+    "your_pasword",
     region="garage",
     secure=False,
 )

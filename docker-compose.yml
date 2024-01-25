@@ -7,6 +7,21 @@ services:
       - "8000:8000"
     depends_on:
       - database
+      - minio
+    networks:
+      - GrafhyPy
+
+  minio:
+    image: docker.io/bitnami/minio:2023
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=your_username
+      - MINIO_ROOT_PASSWORD=your_pasword
+      - MINIO_DEFAULT_BUCKETS=grafhy
+    volumes:
+      - minio_data:/data
     networks:
       - GrafhyPy
     
@@ -33,3 +48,6 @@ services:
 
 networks:
   GrafhyPy:
+
+volumes:
+  minio_data:
