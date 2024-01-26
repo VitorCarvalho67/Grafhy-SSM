@@ -34,7 +34,7 @@
   methods: {
     async getComunicados() {
       try {
-        const response = await axios.get('http://localhost:8000/comunicado/');
+        const response = await axios.get('http://localhost:9999/comunicado/');
         this.comunicados = response.data;
       } catch (error) {
         console.error('Erro ao obter comunicados:', error);

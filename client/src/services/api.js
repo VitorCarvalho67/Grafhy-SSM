@@ -4,7 +4,7 @@ import router from '../router/index.js';
 // quero usar um redirecionamento para a página dashboard após o login
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000', // Insira a URL base do seu backend aqui
+  baseURL: 'http://localhost:9999', // Insira a URL base do seu backend aqui
 });
 
 export const registerUser = async (userData) => {

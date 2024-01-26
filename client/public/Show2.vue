@@ -23,7 +23,7 @@
   
       onMounted(async () => {
         try {
-          const response = await axios.get('http://localhost:8000/comunicados/');
+          const response = await axios.get('http://localhost:9999/comunicados/');
           messages.value = response.data.reverse(); // Reverse the order of the messages
           nextTick(() => {
             containerRef.value.scrollTop = contentRef.value.offsetHeight;

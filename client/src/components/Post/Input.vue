@@ -65,7 +65,7 @@ export default defineComponent({
             }
 
             try {
-                const response = await axios.post('http://localhost:8000/comunicado/', formData, {
+                const response = await axios.post('http://localhost:9999/comunicado/', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

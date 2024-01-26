@@ -1,13 +1,40 @@
 version: '3'
 
 services:
-  server:
+  api01: &api
     build: ./server
     ports:
       - "8000:8000"
     depends_on:
       - database
       - minio
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '0.4GB'
+    networks:
+      - GrafhyPy
+
+  api02:
+    <<: *api
+    ports:
+      - "8001:8000"
+
+  nginx: # Load Balancer
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api01
+      - api02
+    deploy:
+      resources:
+        limits:
+          cpus: '0.15'
+          memory: '0.5GB'
+    ports:
+      - "9999:9999"
     networks:
       - GrafhyPy
 
@@ -30,7 +57,7 @@ services:
     ports:
       - "5173:5173"
     depends_on:
-      - server
+      - nginx
     networks:
       - GrafhyPy
 
