@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="https://github.com/VitorCarvalho67/Grafhy-Vue-FastAPI/assets/102667323/a10aa288-747e-4b3f-9ca5-1d7da1fba175" alt="Imagem logo" />
+  <img src="https://github.com/VitorCarvalho67/Grafhy-SSM/assets/102667323/a10aa288-747e-4b3f-9ca5-1d7da1fba175" alt="Imagem logo" />
 </p>
 
 # GRAFHY (social media)
 
-[![GitHub license](https://img.shields.io/github/license/vitorcarvalho67/Grafhy-Vue-FastAPI)](vitorcarvalho67/Grafhy-Vue-FastAPI/blob/master/LICENSE) ![GitHub stars](https://img.shields.io/github/stars/vitorcarvalho67/Grafhy-Vue-FastAPI) ![GitHub stars](https://img.shields.io/github/languages/count/vitorcarvalho67/Grafhy-Vue-FastAPI) ![GitHub stars](https://img.shields.io/github/languages/top/vitorcarvalho67/Grafhy-Vue-FastAPI) ![GitHub stars](https://img.shields.io/github/repo-size/vitorcarvalho67/Grafhy-Vue-FastAPI) ![GitHub stars](https://img.shields.io/github/languages/code-size/vitorcarvalho67/Grafhy-Vue-FastAPI)
+[![GitHub license](https://img.shields.io/github/license/vitorcarvalho67/Grafhy-SSM)](vitorcarvalho67/Grafhy-SSM/blob/master/LICENSE) ![GitHub stars](https://img.shields.io/github/stars/vitorcarvalho67/Grafhy-SSM) ![GitHub stars](https://img.shields.io/github/languages/count/vitorcarvalho67/Grafhy-SSM) ![GitHub stars](https://img.shields.io/github/languages/top/vitorcarvalho67/Grafhy-SSM) ![GitHub stars](https://img.shields.io/github/repo-size/vitorcarvalho67/Grafhy-SSM) ![GitHub stars](https://img.shields.io/github/languages/code-size/vitorcarvalho67/Grafhy-SSM)
 
 GRAFHY is a virtual communication platform that enables users to exchange messages, posts, and images. Furthermore, it offers features such as creating conversation groups, user login and registration, real-time encrypted messaging, message and post notifications, user profiles with photos, and encrypted passwords. Its MySQL database ensures efficient management of user interactions, making it a comprehensive and secure platform for online communication.
 
@@ -14,17 +14,18 @@ GRAFHY is a virtual communication platform that enables users to exchange messag
 - MySQL
 - Minio
 - JavaScript
+- Nginx
 - Vue
 - Tauri
 
 ## How To Use
 ```bash
-git clone https://github.com/VitorCarvalho67/GrafhyPy.git
+git clone https://github.com/VitorCarvalho67/Grafhy-SSM.git
 ```
 
 Navigate to the project directory on sever side
 ```bash
-cd GrafhyPy/server
+cd Grafhy-SSM/server
 ```
 
 Create a virtual environment (venv) for the project
@@ -79,4 +80,4 @@ Contributions to this project are welcome. Please follow these steps to contribu
 2. Create a new branch for your feature or bug fix.
 3. Commit your changes.
 4. Push to the branch.
-5. Submit a pull request
+5. Submit a pull request.
