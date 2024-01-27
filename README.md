@@ -16,6 +16,7 @@ GRAFHY is a virtual communication platform that enables users to exchange messag
 - JavaScript
 - Nginx
 - Vue
+- Docker-compose
 - Tauri
 
 ## How To Use
@@ -68,6 +69,10 @@ npm run dev
 </p>
 
 ## Running with docker
+
+>[!WARNING]
+> remember to uncomment .env.example and remove .example from the file name.
+
 ```bash
 sudo docker-compose build
 sudo docker-compose up

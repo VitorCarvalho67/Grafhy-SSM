@@ -37,13 +37,6 @@ CREATE TABLE `comments` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `comments`
---
-
-/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
-
---
 -- Table structure for table `comunicados`
 --
 
@@ -61,13 +54,6 @@ CREATE TABLE `comunicados` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `comunicados`
---
-
-/*!40000 ALTER TABLE `comunicados` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comunicados` ENABLE KEYS */;
-
---
 -- Table structure for table `comunicados_teste`
 --
 
@@ -83,14 +69,6 @@ CREATE TABLE `comunicados_teste` (
   PRIMARY KEY (`id_comunicados`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `comunicados_teste`
---
-
-/*!40000 ALTER TABLE `comunicados_teste` DISABLE KEYS */;
-INSERT INTO `comunicados_teste` VALUES (29,'awdawd','awdawd','2024-1-25','b294ada97f27f9d5d5d90c3470732c195058599dfad81cb705db1aa867edbcf2.jpeg'),(30,'aaaaa','aaaa','2024-1-25','09fea83415cb6deeab3c77a2235f4ec803ba62124b7b6449a637350f16a2a89e.jpg'),(31,'awdawd','dawdawd','2024-1-26','46dad02a8c95757ba3d3c2d2bdf43fb1f9b548fbde341751e2530c5a39310a2f.jpg'),(32,'dawdawda','awdawda','2024-1-26','bf6ec354c87cb4cd5d03753752f54c0755563a22df1bb3f6c2347922f18697fa.jpg'),(33,'fes','sefsef','2024-1-27','07efdf5d5ab6291796cb3cdb0ebec0cb7f76e79b7f9de126186ce86595cfbaf2.jpg'),(34,'dawdawd','awdawdawd','2024-1-27','377619e43f1a04c37e9d75f0d76b8e73f19775195da197f3c685350055665881.png');
-/*!40000 ALTER TABLE `comunicados_teste` ENABLE KEYS */;
 
 --
 -- Table structure for table `contacts_groupo`
@@ -113,13 +91,6 @@ CREATE TABLE `contacts_groupo` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contacts_groupo`
---
-
-/*!40000 ALTER TABLE `contacts_groupo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `contacts_groupo` ENABLE KEYS */;
-
---
 -- Table structure for table `contacts_grupo`
 --
 
@@ -137,13 +108,6 @@ CREATE TABLE `contacts_grupo` (
   CONSTRAINT `contacts_grupo_ibfk_2` FOREIGN KEY (`id_groups`) REFERENCES `groups` (`id_groups`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `contacts_grupo`
---
-
-/*!40000 ALTER TABLE `contacts_grupo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `contacts_grupo` ENABLE KEYS */;
 
 --
 -- Table structure for table `contacts_users`
@@ -165,14 +129,6 @@ CREATE TABLE `contacts_users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contacts_users`
---
-
-/*!40000 ALTER TABLE `contacts_users` DISABLE KEYS */;
-INSERT INTO `contacts_users` VALUES (22,1,13),(23,13,1),(24,1,14),(25,14,1);
-/*!40000 ALTER TABLE `contacts_users` ENABLE KEYS */;
-
---
 -- Table structure for table `groups`
 --
 
@@ -187,14 +143,6 @@ CREATE TABLE `groups` (
   PRIMARY KEY (`id_groups`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `groups`
---
-
-/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-INSERT INTO `groups` VALUES (1,'string','string','string'),(2,'string','string','string'),(3,'AAAAAAAAAAAAAAA','AAAAAAAA','AAAAAAAAA');
-/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 
 --
 -- Table structure for table `likes`
@@ -214,13 +162,6 @@ CREATE TABLE `likes` (
   CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`id_posts`) REFERENCES `posts` (`id_posts`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `likes`
---
-
-/*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 
 --
 -- Table structure for table `messages_grupo`
@@ -244,14 +185,6 @@ CREATE TABLE `messages_grupo` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `messages_grupo`
---
-
-/*!40000 ALTER TABLE `messages_grupo` DISABLE KEYS */;
-INSERT INTO `messages_grupo` VALUES (68,13,2,'a','2023-07-10 12:02:48'),(69,13,2,'ggg','2023-07-10 12:05:06'),(70,13,2,'jjj','2023-07-10 12:06:21'),(71,13,2,'a','2023-07-10 12:08:27'),(72,13,2,'awdawd','2023-07-10 12:12:04'),(73,13,2,'awdw','2023-07-10 12:12:04'),(74,13,3,'awdawdawdawdawdawd','2023-07-10 12:35:02'),(75,13,3,'OIIIIII','2023-07-10 12:38:12'),(76,13,3,'opa','2023-07-10 12:38:12'),(77,13,3,'Daniel','2023-07-10 12:42:34'),(78,13,2,'jkhj','2023-07-10 14:49:15'),(79,13,2,'oi','2023-07-10 15:28:48'),(80,13,2,'oiiiii','2023-07-10 17:58:07'),(81,13,2,'opa','2023-07-11 12:56:35'),(82,13,2,'awdawd','2023-07-11 14:17:14'),(83,13,2,'awdawdwa','2023-07-11 14:22:08'),(84,13,2,'fsefsef','2023-07-11 15:02:48'),(85,13,2,'fesfe','2023-07-12 17:13:30'),(86,13,2,'sfefsef','2023-07-13 14:56:32'),(87,13,2,'awdawdawd','2023-07-13 23:22:07'),(88,13,2,'Opa','2023-07-14 01:07:31'),(89,13,2,'awdawdawd','2023-07-14 14:20:16'),(90,13,2,'awdawd','2023-07-14 14:22:14'),(91,13,2,'a','2023-07-14 15:24:23'),(92,13,2,'a','2023-07-14 15:28:17'),(93,13,2,'adwdawdawd','2023-07-14 15:37:37'),(94,13,2,'Oiii','2023-07-14 15:40:38'),(95,13,2,'opa','2024-01-23 23:36:23'),(96,13,2,'awd','2024-01-24 23:50:37'),(97,13,2,'dwad','2024-01-25 00:24:44'),(98,13,2,'DDD','2024-01-25 00:47:20'),(99,13,2,'s','2024-01-25 01:08:16'),(100,13,2,'s','2024-01-25 01:08:16'),(101,13,2,'s','2024-01-25 01:08:16'),(102,13,2,'s','2024-01-25 01:08:16'),(103,13,2,'awdawd','2024-01-25 17:23:21');
-/*!40000 ALTER TABLE `messages_grupo` ENABLE KEYS */;
-
---
 -- Table structure for table `messages_users`
 --
 
@@ -273,14 +206,6 @@ CREATE TABLE `messages_users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `messages_users`
---
-
-/*!40000 ALTER TABLE `messages_users` DISABLE KEYS */;
-INSERT INTO `messages_users` VALUES (1,1,4,'Olá, teste de envio','2023-07-13 11:40:30'),(2,1,4,'Olá, teste de envio','2023-07-13 11:40:30'),(3,1,4,'Olá, teste de envio','2023-07-13 11:40:30'),(4,1,4,'Olá, teste de envio','2023-07-13 11:40:30'),(5,1,4,'Olá, teste de envio','2023-07-13 11:40:30'),(6,1,4,'Olá, teste de envio','2023-07-13 11:40:30'),(7,8,8,'OIiii','2023-07-13T18:18:00.526Z'),(8,8,8,'d','2023-07-13T18:18:09.655Z'),(9,8,8,'','2023-07-13T18:20:01.244Z'),(10,8,8,'efsefsefsef','2023-07-13T18:20:09.931Z'),(11,8,8,'fenskeufhesufhsf','2023-07-13T18:22:26.528Z'),(12,8,8,'sefsefse','2023-07-13T18:22:29.873Z'),(13,13,13,'dawdawd','2023-07-13T18:22:54.610Z'),(14,13,13,'dawdwad','2023-07-13T18:45:21.572Z'),(15,1,1,'awdawdwa','2023-07-13T18:45:25.798Z'),(16,1,1,'dawdwa','2023-07-13T18:46:51.610Z'),(17,13,13,'awdawd','2023-07-13T18:46:56.241Z'),(18,1,1,'Olá Vitor sou o Daniel','2023-07-13T18:47:30.651Z'),(19,1,1,'oiiiiiii aqui é o vitor','2023-07-13T18:49:45.488Z'),(20,1,13,'oiiiiiiiii','2023-07-13T19:15:11.506Z'),(21,1,1,'esfefsefsef','2023-07-13T19:17:06.640Z'),(22,1,1,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','2023-07-13T19:17:18.464Z'),(23,1,13,'aaaaaaaaaaaaaaaaaaaa','2023-07-13T19:17:26.399Z'),(24,1,1,'oi','2023-07-13T19:19:17.733Z'),(25,13,1,'Olá, teste de envio','2023-07-13 11:40:30'),(26,1,13,'qsqSqsQS','2023-07-13T19:33:51.446Z'),(27,1,13,'AWDAWDAWDWAD','2023-07-13T19:33:58.104Z'),(28,1,13,'DDDDDDDDDDDDDD','2023-07-13T19:38:29.177Z'),(29,13,1,'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA','2023-07-13T19:38:39.867Z'),(30,13,1,'ddddddd','2023-07-13T19:42:27.571Z'),(31,13,1,'awdawd','2023-07-13T19:54:51.655Z'),(32,1,13,'awdawd','2023-07-13T19:55:01.831Z'),(33,1,13,'awdawd','2023-07-13T20:02:04.720Z'),(34,13,1,'awdawd','2023-07-13T20:02:06.153Z'),(35,1,13,'awdawd','2023-07-13T20:02:07.967Z'),(36,13,1,'wdawd','2023-07-13T20:02:09.553Z'),(37,1,13,'awdawd','2023-07-13T20:02:11.352Z'),(38,13,1,'awdawd','2023-07-13T20:02:13.033Z'),(39,1,13,'awdawdawd','2023-07-13T20:02:14.784Z'),(40,13,1,'awdawdawd','2023-07-13T20:02:16.449Z'),(41,1,13,'awdawdaw','2023-07-13T20:02:17.904Z'),(42,13,1,'awdawdawd','2023-07-13T20:02:19.984Z'),(43,1,13,'wadawdawd','2023-07-13T20:02:21.544Z'),(44,13,1,'awdawdawd','2023-07-13T20:02:23.313Z'),(45,1,13,'awdawdawd','2023-07-13T20:02:24.952Z'),(46,13,1,'awdawdawd','2023-07-13T20:02:26.906Z'),(47,1,13,'awdawdaw','2023-07-13T20:02:28.961Z'),(48,13,1,'awdawdawd','2023-07-13T20:02:31.187Z'),(49,13,1,'adawd','2023-07-13T20:02:38.538Z'),(50,13,1,'dawdawd','2023-07-13T20:16:40.450Z'),(51,1,13,'adwawda','2023-07-13T20:32:09.380Z'),(52,13,1,'ssss','2023-07-13T20:32:24.959Z'),(53,13,1,'dwadwada','2023-07-13T20:33:44.595Z'),(54,1,13,'awdawdaw','2023-07-13T20:33:48.216Z'),(55,1,13,'adawdwa','2023-07-13T20:33:52.410Z'),(56,13,1,'Opa','2023-07-13T23:09:10.715Z'),(57,13,1,'Olá, teste de envio','2023-07-12 11:40:30'),(58,13,1,'Legal','2023-07-13T23:48:39.295Z'),(59,13,1,'Teste','2023-07-13T23:50:15.953Z'),(60,13,1,'AAAAAAA','2023-07-13T23:50:19.825Z'),(61,1,13,'Olá','2023-07-13T23:50:35.593Z'),(62,13,1,'Opa','2023-07-14T01:06:01.087Z'),(63,13,1,'awdawdawd','2023-07-14T14:19:25.484Z'),(64,13,1,'dawdawd','2023-07-14T14:19:52.195Z'),(65,1,14,'banana','2023-07-14T15:30:06.321Z'),(66,14,1,'caganeira','2023-07-14T15:30:26.796Z'),(67,1,14,'OIIIIII ','2023-07-14T15:44:12.116Z'),(68,1,13,'oi','2023-07-14T16:46:58.165Z'),(69,1,13,'opa','2023-07-14T16:48:06.134Z'),(70,1,13,'olá','2023-07-14T16:48:10.719Z'),(71,1,13,'opa','2023-07-14T16:48:35.328Z'),(72,13,1,'Tudo bem?','2023-07-14T16:48:43.598Z'),(73,1,14,'wadadw','2023-07-14T17:13:26.069Z');
-/*!40000 ALTER TABLE `messages_users` ENABLE KEYS */;
-
---
 -- Table structure for table `posts`
 --
 
@@ -298,13 +223,6 @@ CREATE TABLE `posts` (
   CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id_users`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `posts`
---
-
-/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 
 --
 -- Table structure for table `solicitation`
@@ -326,14 +244,6 @@ CREATE TABLE `solicitation` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `solicitation`
---
-
-/*!40000 ALTER TABLE `solicitation` DISABLE KEYS */;
-INSERT INTO `solicitation` VALUES (23,8,13),(25,1,8);
-/*!40000 ALTER TABLE `solicitation` ENABLE KEYS */;
-
---
 -- Table structure for table `users`
 --
 
@@ -349,14 +259,6 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id_users`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Vitor','vitor10eduardo@gmail.com','123','str'),(4,'Nome do usuário','emaill@exemplo.com','senha123','linkdafoto.com/foto.jpg'),(8,'Amanda','email@exemplo.com','senha123','wdawdawd'),(13,'Daniel','Daniel@exemplo.com','daniel não lembra a senha','jkaldjwljdaiwdjpawod'),(14,'Lin','lin@exemplo.com','lin123','dwadawdawdawd'),(15,'dawdadawd','adwdaw@dawdaw','awdawdawd','awdawdawd'),(16,'awdawdaw','awdawd@dwadw','awdawdawd','awdawdawd'),(17,'awdawdaw','awdawd@wdadawd','awdawdawd','awdawd'),(18,'Daniel ','daniel.exemplo@gmail.com','+908754560912654TrfpHuln:;','Minha foto?'),(19,'a','a@gmail.com','aaa','a'),(20,'Teste','teste@teste.com','teste','teste'),(21,'dwadawd','awdawd@gmail.com','awdawd','awd');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 --
 -- Temporary table structure for view `view_comments`
@@ -652,4 +554,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-27  0:34:09
+-- Dump completed on 2024-01-27  0:45:31
