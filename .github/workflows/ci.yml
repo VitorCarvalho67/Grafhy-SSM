@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Configurar Docker Compose
-      run: docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
-
-    - name: Esperar pelos serviços ficarem disponíveis
-      run: docker-compose -f docker-compose.yml -f docker-compose.override.yml exec api01 sh -c "while ! nc -z database 3306; do sleep 1; done" && docker-compose -f docker-compose.yml -f docker-compose.override.yml exec api01 sh -c "while ! nc -z minio 9000; do sleep 1; done"
-
-    - name: Parar e remover contêineres Docker Compose
-      run: docker-compose -f docker-compose.yml -f docker-compose.override.yml down
+      - name: Checkout código
+        uses: actions/checkout@v2
+  
+      - name: Configurar Docker Compose
+        run: docker-compose up -d
+  
+      - name: Verificar se o Docker Compose está funcionando
+        run: docker-compose ps
+  
+      - name: Parar e remover contêineres Docker Compose
+        run: docker-compose down
