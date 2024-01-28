@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v2
+  
+      - name: Configurar Docker Compose
+        run: docker-compose up -d
+  
+      - name: Verificar se o Docker Compose está funcionando
+        run: docker-compose ps
+  
+      - name: Parar e remover contêineres Docker Compose
+        run: docker-compose down
