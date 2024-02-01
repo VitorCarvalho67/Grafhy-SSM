@@ -1,3 +1,10 @@
+<h4 align="center">
+    <p>
+        <b>English</b> |
+        <a href="https://github.com/VitorCarvalho67/Grafhy-SSM/blob/main/README_pt-br.md">Рortuguês</a>
+      </p>
+ </h4>
+
 <p align="center">
   <img src="https://github.com/VitorCarvalho67/Grafhy-SSM/assets/102667323/a10aa288-747e-4b3f-9ca5-1d7da1fba175" alt="Imagem logo" />
 </p>
