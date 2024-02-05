@@ -33,15 +33,17 @@ class User(Base):
     password_users = Column(String)
     photo_users = Column(String)
 
-    def to_dict(self):
-        return {
-            "id_users": self.id_users,
-            "name_users": self.name_users,
-            "email_users": self.email_users,
-            "password_users": self.password_users,
-            "photo_users": self.photo_users
-        }
+    # def to_dict(self):
+    #     return {
+    #         "id_users": self.id_users,
+    #         "name_users": self.name_users,
+    #         "email_users": self.email_users,
+    #         "password_users": self.password_users,
+    #         "photo_users": self.photo_users
+    #     }
 
+    def to_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 class Groups(Base):
     __tablename__ = "groups"
@@ -87,7 +89,6 @@ class Comunicado_teste(Base):
     message_comunicado = Column(String, index=True)
     date_message = Column(String, index=True)
     hash_arquivo = Column(String, index=True)
-    
 
     def to_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}

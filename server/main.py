@@ -11,8 +11,8 @@ from typing import List, Dict
 from fastapi import UploadFile, File
 from typing import Optional
 from datetime import date
-from fastapi import Form
-from fastapi.responses import FileResponse
+from fastapi import Form, File, UploadFile
+from fastapi.responses import StreamingResponse
 import base64
 
 import hashlib
@@ -62,12 +62,49 @@ class UserLogin(BaseModel):
 
 
 @app.post("/users/", response_model=UserOut)
-def create_user(user: UserCreate, db: Session = Depends(get_db)):
-    db_user = User(**user.dict())
+async def create_user(name_users: str = Form(...),
+                      email_users: str = Form(...),
+                      password_users: str = Form(...),
+                      file_photo: UploadFile = File(None),  # Este nome deve corresponder ao nome usado no FormData
+                      db: Session = Depends(get_db)):
+
+    if file_photo:
+        date_now = date.today()
+        hash_file = hashlib.sha256(f"{file_photo.filename}:::::::{date_now}".encode("UTF-8")).hexdigest()
+        type_file = file_photo.filename.split(".")[-1]
+        file_content = await file_photo.read()
+        # Substitua 'your_bucket_name' pelo nome do seu bucket no MinIO
+        client.put_object(
+            "grafhy", f"users/{hash_file}.{type_file}", io.BytesIO(file_content), file_content.__len__())
+        photo_users = f"{hash_file}.{type_file}"
+    else:
+        photo_users = None
+
+    # Cria um novo usuário com os dados recebidos
+    db_user = User(name_users=name_users, 
+                   email_users=email_users, 
+                   password_users=password_users,
+                   photo_users=photo_users)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
     return db_user.to_dict()
+
+@app.get("/users/photo/{user_id}")
+async def get_user_photo(user_id: int, db: Session = Depends(get_db)):
+    db_user = db.query(User).filter(User.id_users == user_id).first()
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    try:
+        type_file = db_user.photo_users.split('.')[-1]
+        name_file = db_user.photo_users.split('.')[-2]
+        file_content = client.get_object("grafhy", f"users/{name_file}.{type_file}").read()
+        
+        # Criar um StreamingResponse usando o conteúdo do arquivo
+        return StreamingResponse(io.BytesIO(file_content), media_type=f"image/{type_file}")
+    except Exception as e:
+        print(f"Erro ao obter arquivo: {e}")
+        return {"error": 1, "success": False}
 
 # get em um user com o email especifico
 @app.get("/users/email/{email_users}", response_model=UserOut)

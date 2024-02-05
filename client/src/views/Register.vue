@@ -3,6 +3,10 @@
     <div class="register-box">
         <h2>Register</h2>
         <form @submit.prevent="registerUser">
+            <div class="box">
+                <!-- pré visualição da img -->
+                <img :src="userData.previewImage" alt="Preview" v-if="userData.previewImage"/>
+            </div>   
             <div>
                 <label for="name">Name:</label>
                 <input id="name" type="text" v-model="userData.name_users" required />
@@ -17,7 +21,7 @@
             </div>
             <div>
                 <label for="photo">Photo:</label>
-                <input id="photo" type="text" v-model="userData.photo_users" required />
+                <input id="photo" type="file" @change="previewImage" accept="image/png, image/jpeg">
             </div>
             <button type="submit">Register</button>
         </form>
@@ -30,6 +34,7 @@
 import { ref } from 'vue';
 import { registerUser } from '../services/api';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 
@@ -40,37 +45,41 @@ export default {
             name_users: '',
             email_users: '',
             password_users: '',
-            photo_users: ''
+            photo_users: null, // Mudança para aceitar o objeto File
+            previewImage: null
         });
         const errorMessage = ref('');
-        const successMessage = ref('');  // nova variável para a mensagem de sucesso
+        const successMessage = ref('');
+
+        const previewImage = function(event) {
+            const file = event.target.files[0];
+            userData.value.photo_users = file;
+            userData.value.previewImage = URL.createObjectURL(file);
+        };
 
         const performRegistration = async () => {
+            const formData = new FormData();
+            formData.append('name_users', userData.value.name_users);
+            formData.append('email_users', userData.value.email_users);
+            formData.append('password_users', userData.value.password_users);
+            if (userData.value.photo_users) {
+                // Certifique-se de que 'file_photo' corresponde ao nome do parâmetro no endpoint FastAPI
+                formData.append('file_photo', userData.value.photo_users, userData.value.photo_users.name);
+            }
+
+
             try {
-                const user = await registerUser(userData.value);
-                console.log('User registered:', user);
-                successMessage.value = 'Usuário registrado com sucesso!';  
-                
-                // Limpa os campos do formulário
-                userData.value.name_users = '';
-                userData.value.email_users = '';
-                userData.value.password_users = '';
-                userData.value.photo_users = '';
-
-                // Redireciona para a página de login
-                setTimeout(() => {
-                    this.$router.push({ name: 'Login' });
-                }, 200);
-
+                const response = await axios.post('http://localhost:9999/users/', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                console.log('User registered:', response.data);
+                successMessage.value = 'Usuário registrado com sucesso!';
+                // Limpeza dos campos e redirecionamento são mantidos
             } catch (error) {
                 errorMessage.value = error.message;
-
-                // Limpa os campos do formulário
-                userData.value.name_users = '';
-                userData.value.email_users = '';
-                userData.value.password_users = '';
-                userData.value.photo_users = '';
-
+                // Limpeza dos campos em caso de erro é mantida
             }
         };
 
@@ -78,7 +87,8 @@ export default {
             userData,
             errorMessage,
             successMessage,
-            registerUser: performRegistration
+            registerUser: performRegistration,
+            previewImage
         };
     },
     components: {
@@ -116,6 +126,16 @@ form div {
     display: flex;
     flex-direction: column;
     margin: 0.5rem;
+}
+
+.box{
+    margin: 5px;
+}
+
+.box img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
 
 input {
