@@ -4,9 +4,11 @@
 
         <main>
             <div class="box">
-                <h1>Hello to the dashboard</h1>
-                <h2>{{ userEmail }}</h2>
-
+                <div class="perfil">
+                    <img :src="userPhotoUrl" alt="User Photo" v-if="userPhotoUrl"/>
+                    <h2>{{ userEmail }}</h2>
+                </div>
+                
                 <!-- Exibir solicitações -->
                 <ul class="solicitations">
                     <li v-for="(solicitation, index) in solicitations" :key="index">
@@ -65,6 +67,7 @@ export default {
     },
     data() {
         return {
+            userName: null,
             userEmail: null,
             password: null,
             email: null,  // email do usuário para o qual enviar a solicitação
@@ -103,6 +106,17 @@ export default {
         },
         async fetchLoggedInUserId() {
             this.user = await this.fetchUserIdByEmail(this.userEmail);
+        },
+        async fetchUserPhoto() {
+            if (this.user) {
+                try {
+                    const response = await axios.get(`http://localhost:9999/users/photo/${this.user}`, { responseType: 'blob' });
+                    this.userPhotoUrl = URL.createObjectURL(response.data);
+                } catch (error) {
+                    console.error('Erro ao buscar a foto do usuário', error);
+                    this.userPhotoUrl = '/caminho/para/imagem/padrão.jpg'; // Defina um caminho padrão ou deixe vazio
+                }
+            }
         },
         async fetchSolicitations() {
             try {
@@ -173,6 +187,7 @@ export default {
         this.password = JSON.parse(localStorage.getItem('password'));
         this.checkUser();
         await this.fetchLoggedInUserId();
+        await this.fetchUserPhoto(); // Buscar a foto do usuário
         await this.fetchSolicitations();
         await this.fetchContacts();
     },
@@ -217,6 +232,21 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.box .perfil{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
+.box .perfil img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 1rem;
 }
 
 .box-router {
