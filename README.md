@@ -62,7 +62,7 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-## Running the cclient side
+## Running the client side
 Navigate to the project directory on client side, install the dependencies and run the project
 
 ```bash
