@@ -11,7 +11,12 @@
 
 # GRAFHY (social media)
 
-[![GitHub license](https://img.shields.io/github/license/vitorcarvalho67/Grafhy-SSM)](vitorcarvalho67/Grafhy-SSM/blob/master/LICENSE) ![GitHub stars](https://img.shields.io/github/stars/vitorcarvalho67/Grafhy-SSM) ![GitHub stars](https://img.shields.io/github/languages/count/vitorcarvalho67/Grafhy-SSM) ![GitHub stars](https://img.shields.io/github/languages/top/vitorcarvalho67/Grafhy-SSM) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2e2a5e150f9b4af3b6c95070f6526e01)](https://app.codacy.com/gh/VitorCarvalho67/Grafhy-SSM/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) ![GitHub stars](https://img.shields.io/github/repo-size/vitorcarvalho67/Grafhy-SSM) 
+[![GitHub license](https://img.shields.io/github/license/vitorcarvalho67/Grafhy-SSM)](vitorcarvalho67/Grafhy-SSM/blob/master/LICENSE)
+![GitHub stars](https://img.shields.io/github/stars/vitorcarvalho67/Grafhy-SSM)
+![Build Status](https://github.com/VitorCarvalho67/Grafhy-SSM/actions/workflows/ci.yml/badge.svg)
+![GitHub languages top](https://img.shields.io/github/languages/top/vitorcarvalho67/Grafhy-SSM)
+[![GitHub contributors](https://img.shields.io/github/contributors/VitorCarvalho67/Grafhy-SSM)](https://github.com/VitorCarvalho67/Grafhy-SSM/graphs/contributors)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2e2a5e150f9b4af3b6c95070f6526e01)](https://app.codacy.com/gh/VitorCarvalho67/Grafhy-SSM/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 GRAFHY is a virtual communication platform that enables users to exchange messages, posts, and images. Furthermore, it offers features such as creating conversation groups, user login and registration, real-time encrypted messaging, message and post notifications, user profiles with photos, and encrypted passwords. Its MySQL database ensures efficient management of user interactions, making it a comprehensive and secure platform for online communication.
 
