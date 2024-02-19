@@ -70,12 +70,14 @@ npm run dev
 
 ## Running with docker
 
->[!WARNING]
+>[!IMPORTANT]
 > remember to uncomment .env.example and remove .example from the file name.
 
 ```bash
 sudo docker-compose build
 sudo docker-compose up
+# or 
+sudo docker-compose up -d
 ```
 
 ## Contributing
